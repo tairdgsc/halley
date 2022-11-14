@@ -93,10 +93,10 @@ while True:
     print('1 - Cadastrar ônibus')
     print('2 - Cadastrar motorista')#terminado mas falta testar
     print('3 - Horário de rotas')
-    print('5 - Horário para motoristas')
-    print('6 - Designar ônibus')
-    print('7 - Realizar check-in')
-    print('8 - Cadastrar cobrador')
+    print('4 - Horário para motoristas')
+    print('5 - Designar ônibus')
+    print('6 - Realizar check-in')
+    print('7 - Cadastrar cobrador')
     print('8 - Colocar cobrador')
     selecaoNum = int(input('0 - Sair\n'))
     if(selecaoNum == 0):
