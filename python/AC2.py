@@ -83,7 +83,7 @@ def cadRota():
 while True:
     print('Olá usuário o que deseja fazer?')
     print('1 - Cadastrar ônibus')
-    print('2 - Cadastrar motorista')
+    print('2 - Cadastrar motorista')#terminado mas falta testar
     print('3 - Horário de rotas')
     print('5 - Horário para motoristas')
     print('6 - Designar ônibus')
