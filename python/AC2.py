@@ -24,31 +24,53 @@ def cadMotorista():
 
 def cadRota():
     linhaNumDias = int(input("Essa linha corre quantos dias\n"))
-    if(linhaNumDias <= 0):
-        print("O valor tem que ser superior a 0")
+    if(linhaNumDias < 0 and linhaNumDias > 7):
+        print("O valor tem que ser superior a 0 e menor que 8")
         return(cadRota())
-    linhaDias = ""
-    for i in range(linhaNumDias):
+    for i in range(linhaNumDias-1):
         print("1 - Domingo")
         print("2 - Segunda-feira")
         print("3 - Terça-feira")
         print("4 - Quarta-feira")
         print("5 - Quinta-feira")
         print("6 - Sexta-feira")
-        print("7 - Sábado-feira")
-        dia = int(input("Informe um dia ser cadastrado"))
+        print("7 - Sábado")
+        dia = -1
+        diaJaCad = [None] * 7
         horaInicial = -1
         horaFinal = -1
-        diaJaCad = []
-        while(diaJaCad[dia] == diaJaCad[dia]):
-            dia = int(input("Esse dia já foi cadastrado informe outro"))
-            diaJaCad.insert(dia, dia)
-        while(horaInicial >= 0 and horaInicial < 24 and horaFinal >= 0 and horaFinal < 24):
-            horaInicial = input("informe o horário inicial da linha entre 00 a 23")
-            horaFinal = input("informe o horário final da linha entre 00 a 23")
-        horaEdia = str(horaInicial + " às " + horaFinal)
-        linhaDias = linhaDias + " " + input("Informe o dia")
-        linhaDias = linhaDias + " " + input("Informe o horário")
+        minutosInicial = -1
+        minutosFinal = -1
+        while(True):
+            linhaNumDias = linhaNumDias -1
+            dia = int(input("Informe um dia da semana para cadastrar entre 1 e 7\n"))
+            while(dia < 1 and dia > 7):
+                dia = int(input("Informe um dia da semana para cadastrar entre 1 e 7\n"))
+            if diaJaCad[dia] == None:
+                diaJaCad[dia] = dia
+            else:
+                while not diaJaCad[dia] == None:
+                    dia = int(input("Esse dia já foi cadastrado, informe outro dia:\n"))
+                diaJaCad[dia] = dia
+
+            if(linhaNumDias == 0):
+                break
+        while(horaInicial < 0 or horaInicial > 23):
+            horaInicial = int(input("informe o horário inicial da linha entre 00 a 23\n"))
+        while(minutosInicial < 0 or minutosInicial > 59):
+            minutosInicial = int(input("Informe um valor para minutos válido\n"))
+        while(horaFinal < 0 or horaFinal > 23):
+            horaFinal = int(input("informe o horário final da linha entre 00 a 23\n"))
+        while(minutosFinal < 0 or minutosFinal > 59):
+            minutosFinal = int(input("Informe um valor para minutos válido\n"))
+        Sdia = str(dia)
+        ShoraInicial = str(horaInicial)
+        SminutosInicial  = str(minutosInicial)
+        ShoraFinal = str(horaFinal)
+        SminutosFinal = str(minutosFinal)
+        horaEdia = (Sdia + " " + ShoraInicial + ":" + SminutosInicial + " às " + ShoraFinal + ":" + SminutosFinal)
+        horaEdia = horaEdia + horaEdia
+        rotas.insere_no_inicio(rotas, horaEdia)
 
     linhaNome = input("Informe um código para a linha\n")
     while(rotas.busca(rotas, linhaNome)):
