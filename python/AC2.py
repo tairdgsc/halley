@@ -36,7 +36,7 @@ def cadRota():
         print("6 - Sexta-feira")
         print("7 - Sábado")
         dia = -1
-        diaJaCad = [None] * 7
+        diaJaCad = [None] * 8
         horaInicial = -1
         horaFinal = -1
         minutosInicial = -1
