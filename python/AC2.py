@@ -24,7 +24,7 @@ def cadMotorista():
 
 def cadRota():
     linhaNumDias = int(input("Essa linha corre quantos dias\n"))
-    if(linhaNumDias < 0 and linhaNumDias > 7):
+    if(linhaNumDias < 1 or linhaNumDias > 7):
         print("O valor tem que ser superior a 0 e menor que 8")
         return(cadRota())
     for i in range(linhaNumDias-1):
@@ -35,48 +35,56 @@ def cadRota():
         print("5 - Quinta-feira")
         print("6 - Sexta-feira")
         print("7 - Sábado")
-        dia = -1
         diaJaCad = [None] * 8
+        dia = -1
         horaInicial = -1
         horaFinal = -1
         minutosInicial = -1
         minutosFinal = -1
-        while(True):
-            linhaNumDias = linhaNumDias -1
-            dia = int(input("Informe um dia da semana para cadastrar entre 1 e 7\n"))
-            while(dia < 1 and dia > 7):
-                dia = int(input("Informe um dia da semana para cadastrar entre 1 e 7\n"))
-            if diaJaCad[dia] == None:
-                diaJaCad[dia] = dia
-            else:
-                while not diaJaCad[dia] == None:
-                    dia = int(input("Esse dia já foi cadastrado, informe outro dia:\n"))
-                diaJaCad[dia] = dia
 
+        while(True):
+            dia = -1
+            horaInicial = -1
+            horaFinal = -1
+            minutosInicial = -1
+            minutosFinal = -1
+            dia = int(input("Informe um dia da semana para cadastrar entre 1 e 7\n"))
+            while(dia < 1 or dia > 7):
+                dia = int(input("Informe um dia da semana para cadastrar entre 1 e 7\n"))
+
+            while not diaJaCad[dia] == None:
+                dia = int(input("Esse dia já foi cadastrado, informe outro dia:\n"))
+                while dia < 1 or dia > 7:
+                    dia = int(input("Informe um dia válido entre 1 a 7"))                
+                
+            diaJaCad[dia] = dia
+
+            while(horaInicial < 0 or horaInicial > 23):
+                horaInicial = int(input("informe o horário inicial da linha entre 00 a 23\n"))
+            while(minutosInicial < 0 or minutosInicial > 59):
+                minutosInicial = int(input("Informe um valor para minutos válido\n"))
+            while(horaFinal < 0 or horaFinal > 23):
+                horaFinal = int(input("informe o horário final da linha entre 00 a 23\n"))
+            while(minutosFinal < 0 or minutosFinal > 59):
+                minutosFinal = int(input("Informe um valor para minutos válido\n"))
+            Sdia = str(dia)
+            ShoraInicial = str(horaInicial)
+            SminutosInicial  = str(minutosInicial)
+            ShoraFinal = str(horaFinal)
+            SminutosFinal = str(minutosFinal)
+            horaEdia = (Sdia + " " + ShoraInicial + ":" + SminutosInicial + " às " + ShoraFinal + ":" + SminutosFinal)
+
+            rotas.insere_no_inicio(rotas, horaEdia)
+
+            linhaNumDias = linhaNumDias -1
             if(linhaNumDias == 0):
                 break
-        while(horaInicial < 0 or horaInicial > 23):
-            horaInicial = int(input("informe o horário inicial da linha entre 00 a 23\n"))
-        while(minutosInicial < 0 or minutosInicial > 59):
-            minutosInicial = int(input("Informe um valor para minutos válido\n"))
-        while(horaFinal < 0 or horaFinal > 23):
-            horaFinal = int(input("informe o horário final da linha entre 00 a 23\n"))
-        while(minutosFinal < 0 or minutosFinal > 59):
-            minutosFinal = int(input("Informe um valor para minutos válido\n"))
-        Sdia = str(dia)
-        ShoraInicial = str(horaInicial)
-        SminutosInicial  = str(minutosInicial)
-        ShoraFinal = str(horaFinal)
-        SminutosFinal = str(minutosFinal)
-        horaEdia = (Sdia + " " + ShoraInicial + ":" + SminutosInicial + " às " + ShoraFinal + ":" + SminutosFinal)
-        horaEdia = horaEdia + horaEdia
-        rotas.insere_no_inicio(rotas, horaEdia)
 
-    linhaNome = input("Informe um código para a linha\n")
-    while(rotas.busca(rotas, linhaNome)):
-        print("Esta linha já existe em nosso banco de dados")
         linhaNome = input("Informe um código para a linha\n")
-    rotas.insere_no_inicio(rotas, linhaNome)
+        while(rotas.busca(rotas, linhaNome)):
+            print("Esta linha já existe em nosso banco de dados")
+            linhaNome = input("Informe um código para a linha\n")
+        rotas.insere_no_inicio(rotas, linhaNome)
     
     print(rotas)
 
