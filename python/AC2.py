@@ -2,6 +2,8 @@ from ListaEncadeada import *
 onibus = ListaEncadeada()
 motorista = ListaEncadeada()
 rotas = ListaEncadeada()
+cobrador = ListaEncadeada()
+listaCheckIn = []
 
 def cadOnibus():
     onibusModelo = input('Olá para cadastrar o onibus informe A para automatico e M para manual ').upper()
@@ -88,6 +90,57 @@ def cadRota():
     
     print(rotas)
 
+def cadCobrador():
+    print("Cadastro de cobrador")
+    infCobrador = input("Informe um nome a ser cadastrado\n")
+    cobrador.insere_no_inicio(cobrador, infCobrador)
+    print(cobrador)
+
+class CheckIn():
+    def __init__(self, onibus, motorista, motor, pneu, tanque, lanterna, elevador, status):
+        self.onibus = onibus
+        self.motorista = motorista
+        self.motor = motor
+        self.pneu = pneu
+        self.tanque = tanque
+        self.lanterna = lanterna
+        self.elevador = elevador
+        self.status = status
+
+def checkIn():
+    print("Check-in do ônibus.")
+    infOnibus = input("Informe o ônibus a ser verificado:\n")
+    infMotorista = input("Informe o nome do motorista responsável:\n")
+    infMotor = ""
+    infPneu = ""
+    infTanque = ""
+    infLanterna = ""
+    infElevador = ""
+
+    while(not infMotor == "SIM" and not infMotor == ("NÃO")):
+        infMotor = input("O motor está em boas condições? Sim ou Não\n").upper()
+
+    while(not infPneu == "SIM" and not infPneu == ("NÃO")):
+        infPneu = input("Os pneus estão em boas condições? Sim ou Não\n").upper()
+
+    while(not infTanque == "SIM" and not infTanque == ("NÃO")):
+        infTanque = input("O tanque está cheio? Sim ou Não\n").upper()
+
+    while(not infLanterna == "SIM" and not infLanterna == ("NÃO")):
+        infLanterna = input("As lanternas e setas estão em boas condições? Sim ou Não\n").upper()
+
+    while(not infElevador == "SIM" and not infElevador == ("NÃO")):
+        infElevador = input("O elevador está em boas condições? Sim ou Não\n").upper()
+
+    if(infMotor == "NÃO" or infPneu == "NÃO" or infTanque == "NÃO" or infLanterna == "NÃO" or infElevador == "NÃO"):
+        print("Verificação não aprovada. Chame um supervisor!")
+        checkin = CheckIn(infOnibus, infMotorista, infMotor, infPneu, infTanque, infLanterna, infElevador, "REPROVADO")
+    else:
+        print("Verificação aprovada. Boa viagem!")
+        checkin = CheckIn(infOnibus, infMotorista, infMotor, infPneu, infTanque, infLanterna, infElevador, "APROVADO")
+    listaCheckIn.append(checkin)
+    print(list(checkin.__dict__.values()))
+
 while True:
     print('Olá usuário o que deseja fazer?')
     print('1 - Cadastrar ônibus')
@@ -95,7 +148,7 @@ while True:
     print('3 - Horário de rotas')
     print('4 - Horário para motoristas')
     print('5 - Designar ônibus')
-    print('6 - Realizar check-in')
+    print('6 - Realizar check-in') #motorista realiza check in antes de iniciar rota
     print('7 - Cadastrar cobrador')
     print('8 - Colocar cobrador')
     selecaoNum = int(input('0 - Sair\n'))
@@ -107,3 +160,7 @@ while True:
         cadMotorista()
     elif(selecaoNum == 3):
         cadRota()
+    elif(selecaoNum == 6):
+        checkIn()
+    elif(selecaoNum == 7):
+        cadCobrador()
