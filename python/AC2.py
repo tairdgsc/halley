@@ -141,6 +141,32 @@ def checkIn():
     listaCheckIn.append(checkin)
     print(list(checkin.__dict__.values()))
 
+def desOnibus():
+    print("Designar Ônibus")
+    print("Esses são os ônibus cadastrados:")
+    print(onibus)
+    onibusDesignado = input("Qual dos ônibus cadastrados deseja designar?\n").upper()
+    if(onibus.busca(onibus, onibusDesignado)):
+        print("Ônibus designado com sucesso!")
+    else:
+        while(not onibus.busca(onibus, onibusDesignado)):
+            onibusDesignado = input("Ônibus inexistente, digite outro por favor:\n").upper()
+        else:
+            print("Ônibus designado com sucesso!")
+        
+def desCobrador():
+    print("Designar Cobrador")
+    print("Esses são os cobradores cadastrados:")
+    print(cobrador)
+    cobradorDesignado = input("Qual dos cobradores cadastrados deseja designar?\n").upper()
+    if(cobrador.busca(cobrador, cobradorDesignado)):
+        print("Cobrador designado com sucesso!")
+    else:
+        while(not cobrador.busca(cobrador, cobradorDesignado)):
+            cobradorDesignado = input("Cobrador inexistente, digite outro por favor:\n").upper()
+        else:
+            print("Cobrador designado com sucesso!")
+    
 while True:
     print('Olá usuário o que deseja fazer?')
     print('1 - Cadastrar ônibus')
@@ -160,7 +186,11 @@ while True:
         cadMotorista()
     elif(selecaoNum == 3):
         cadRota()
+    elif(selecaoNum == 5):
+        desOnibus()
     elif(selecaoNum == 6):
         checkIn()
     elif(selecaoNum == 7):
         cadCobrador()
+    elif(selecaoNum == 8):
+        desCobrador()
