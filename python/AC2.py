@@ -4,7 +4,7 @@ motorista = ListaEncadeada()
 motoristaHorarios = ListaEncadeada()
 rotas = ListaEncadeada()
 cobrador = ListaEncadeada()
-listaCheckIn = []
+listaCheckIn = ListaEncadeada()
 
 def cadOnibus():
     onibusModelo = input('Olá para cadastrar o onibus informe A para automatico e M para manual ').upper()
@@ -217,7 +217,7 @@ def checkIn():
     else:
         print("Verificação aprovada. Boa viagem!")
         checkin = CheckIn(infOnibus, infMotorista, infMotor, infPneu, infTanque, infLanterna, infElevador, "APROVADO")
-    listaCheckIn.append(checkin)
+    listaCheckIn.insere_depois(checkin)
     print(list(checkin.__dict__.values()))
 
 def desOnibus():
