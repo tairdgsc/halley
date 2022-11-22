@@ -171,7 +171,7 @@ def cadMotoristaHorarios():
 
 def cadCobrador():
     print("Cadastro de cobrador")
-    infCobrador = input("Informe um nome a ser cadastrado\n")
+    infCobrador = input("Informe um nome a ser cadastrado\n").upper()
     cobrador.insere_no_inicio(cobrador, infCobrador)
     print(cobrador)
 
@@ -217,7 +217,7 @@ def checkIn():
     else:
         print("Verificação aprovada. Boa viagem!")
         checkin = CheckIn(infOnibus, infMotorista, infMotor, infPneu, infTanque, infLanterna, infElevador, "APROVADO")
-    listaCheckIn.insere_depois(checkin)
+    listaCheckIn.insere_no_inicio(listaCheckIn, checkIn)
     print(list(checkin.__dict__.values()))
 
 def desOnibus():
