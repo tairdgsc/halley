@@ -1,3 +1,4 @@
+from Stack import *
 from ListaEncadeada import *
 onibus = ListaEncadeada()
 motorista = ListaEncadeada()
@@ -8,6 +9,7 @@ listaCheckIn = ListaEncadeada()
 desRotaCobMotorista = ListaEncadeada()
 defeitosA = ListaEncadeada()
 servicosEx = ListaEncadeada()
+garagem = Stack()
 
 def cadOnibus():
     onibusModelo = input('Olá para cadastrar o onibus informe A para automatico e M para manual ').upper()
@@ -349,6 +351,25 @@ def consultarFechados():
     print(servicosEx)
     input("Pressione ENTER para continuar")
 
+def guardarOnibus():
+    bus = input("Digite o onibus a ser guadardo: ")
+    jaExiste = onibus.busca(onibus, bus)
+    if(jaExiste):
+        garagem.push(bus)
+        print("Onibus guardado!")
+    else:
+        print("Placa de carro inexistente.")
+
+def saidaOnibus():
+    if(garagem.isEmpty()):
+        print("Não há carros nesta garagem.")
+    else:
+        placa = garagem.pop()
+        print("O onibus " + placa + " saiu. ")
+
+def qntGaragem():
+    print("Há " + str(garagem.size()) + " carros guardados na garagem")
+
 while True:
     print('Olá usuário o que deseja fazer?')
     print('1 - Cadastrar ônibus')
@@ -362,6 +383,9 @@ while True:
     print('9 - Consultar defeitos em aberto')
     print('10 - Fechar defeitos abertos')
     print('11 - Consultar os serviços já executados')
+    print('12 - Guardar ônibus')
+    print('13 - Saida de ônibus')
+    print('14 - Quantidade carros na garagem')
     selecaoNum = int(input('0 - Sair\n'))
     if(selecaoNum == 0):
         break
@@ -387,3 +411,9 @@ while True:
         cadServicosEx()
     elif(selecaoNum == 11):
         consultarFechados()
+    elif(selecaoNum == 12):
+        guardarOnibus()
+    elif(selecaoNum == 13):
+        saidaOnibus()
+    elif(selecaoNum == 14):
+        qntGaragem()
